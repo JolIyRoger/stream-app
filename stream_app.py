@@ -373,7 +373,7 @@ def process_main_page():
                   'добыча_полезных_ископаемых']
 
     # Добавляем контрол выбора
-    selected_options = st.multiselect(':blue[Выберите графики]',
+    selected_options = st.multiselect(':blue[Выберите отрасли]',
                                       activities,
                                       default=activities)
 
