@@ -40,8 +40,8 @@ def side_bar_params() -> Tuple[int, int]:
 
     st.sidebar.markdown("*Настройки отображения матрицы корреляции*")
 
-    width_cor: int = st.sidebar.slider("ширина таблицы корреляции", 2, 5, 5)
-    height_cor: int = st.sidebar.slider("высота таблицы корреляции", 4, 7, 5)
+    width_cor: int = st.sidebar.slider("Ширина таблицы корреляции", 2, 5, 5)
+    height_cor: int = st.sidebar.slider("Высота таблицы корреляции", 4, 7, 5)
 
     return width_cor, height_cor
 
@@ -157,8 +157,8 @@ def hist_graph(df: pd.DataFrame,
                  )
 
     # Настройка оформления графика
-    plt.title(f'Распределение зарплат в {selected_option}')
-    plt.xlabel('Зарплата (руб)')
+    plt.title(f'Распределение заработных плат в {selected_option}')
+    plt.xlabel('Заработная плата (руб)')
     plt.grid(True)
 
     # Добавление среднего и медианного значений на график
@@ -233,14 +233,14 @@ def plot_salaries(salaries: pd.DataFrame,
 
         color = 'tab:brown'
         ax1.set_xlabel('Год')
-        ax1.set_ylabel('Зарплата', color=color)
+        ax1.set_ylabel('Заработная плата', color=color)
         ax1.plot(salaries.columns, salaries.loc[activity],
                  marker='*',
-                 label='Номинальная зарплата',
+                 label='Номинальная заработная плата',
                  color='red')
         ax1.plot(salaries_real.columns, salaries_real.loc[activity],
                  marker='x',
-                 label='Реальная зарплата',
+                 label='Реальная заработная плата',
                  color='orange')
         ax1.bar(salaries.columns,
                 salaries.loc[activity] - salaries_real.loc[activity],
@@ -274,7 +274,7 @@ def plot_salaries(salaries: pd.DataFrame,
         nominal = salaries.loc[activity]
         real = salaries_real.loc[activity]
         correlation = nominal.corr(real)
-        st.text(f"Корреляция между зарплатами для {activity}: {correlation:.6f}")
+        st.text(f"Корреляция между заработными платами для {activity}: {correlation:.6f}")
 
 def norm_graph(norm_df: pd.DataFrame,
                selected_options_areas,
@@ -326,14 +326,14 @@ def process_main_page():
 
         other_info = open_data('other')
         salaries_real = real_income(salaries, inflation)
-    st.success('Все датасеты загружены!')
+    st.success('Все данные загружены!')
 
 
-    st.title('Краткий обзор изменения заработных плат с 2000 до 2023 год')
+    st.title('Обзор изменения заработных плат с 2000 по 2023 год.')
 
     st.markdown("**Сэмплы загруженных датасетов**")
 
-    st.markdown('### Датасет зарплат')
+    st.markdown('### Датасет заработных плат')
     st.write('Среднемесячная номинальная начисленная заработная'
              ' плата работников организаций по видам экономической деятельности'
              ' в Российской Федерации за 2000-2023 гг.')
@@ -392,7 +392,7 @@ def process_main_page():
               use_container_width=True)
 
     st.markdown('**Выводы:**\n- Во всех трёх видах деятельности наблюдался рост'
-                '\n- Из интересных особенностей - изменение наклона роста зарплат в рыболовстве и рыбоводстве')
+                '\n- Из интересных особенностей - изменение наклона роста заработных плат в рыболовстве и рыбоводстве')
 
     st.info('Для выбранных отраслей можно посмореть гистограммы распределений')
 
@@ -411,8 +411,8 @@ def process_main_page():
     st.pyplot(inflation_graph(inflation))
 
     st.markdown('**Выводы:**\n'
-                '- Стабильной тенденции по инфляции я не вижу.'
-                '- Но всё таки в начале 2000 инфляция была максимальной')
+                '- Стабильной тенденции по инфляции нет.'
+                '- Но всё же в начале 2000 инфляция была максимальной')
 
     st.markdown('### Графики реальной заработной платы')
 
@@ -448,8 +448,8 @@ def process_main_page():
                   end_year_real,
                   verbose_inflation=verbose_inf)
 
-    st.markdown('**Выводы:**\n- Мы имеем большую корреляцию между реальной и номиальной зарплатами,'
-                'не существенно, но всё таки в рыбоводстве и рыболовстве эта корреляция чуть выше'
+    st.markdown('**Выводы:**\n- Мы имеем большую корреляцию между реальной и номиальной заработными платами,'
+                'не существенно, но всё же в рыбоводстве и рыболовстве эта корреляция чуть выше'
                 '\n- Для рыбоводства и рыболовства, пожалуй, не видно явного влияния инфляции. '
                 'Но для других сфер деятельности можно говорить, что при росте инфляции в 2014-2015 годах рост'
                 ' реальной заработной платы замедлялся')
@@ -474,7 +474,7 @@ def process_main_page():
 
     st.markdown('**Выводы**\n'
                 '- все выбранные характеристики (пожалуй кроме СКР)'
-                ' имеют сильную линейную взаимосвязь с реальными зарплатами\n'
+                ' имеют сильную линейную взаимосвязь с реальными заработными платами\n'
                 '- уровень безработицы имеет слабую корреляцию с СКР и индексом счастья\n'
                 '- ВВП чуть хуже линейно связан с СКР и индексом счастья\n'
                 '- индекс счастья меньше всего коррелирует с уровнем бедности и СКР'
